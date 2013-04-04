@@ -3,6 +3,8 @@ ResedApp::Application.routes.draw do
 
   match '/submitnewevent', to: 'event#new'
   match '/admin', to: 'static_pages#admin'
+  match '/signout', to: 'static_pages#signout'
+  match '/signin', to: 'static_pages#signin'
 
   root to: 'static_pages#home'
   match '/about', to: 'static_pages#about'
