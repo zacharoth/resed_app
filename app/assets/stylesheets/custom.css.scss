@@ -88,14 +88,14 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
-  a {
+  small { 
+    float: left;
     color: $gray;
+	font-size: 1.4em;
     &:hover { 
       color: $grayDarker;
     }
-  }  
-  small { 
-    float: left; 
+ 
   }
   ul {
     float: right;
