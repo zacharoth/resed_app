@@ -1,8 +1,10 @@
 ResedApp::Application.routes.draw do
-  get "event/new"
+  resources :events
+
+  match '/submitnewevent', to: 'event#new'
+  match '/admin', to: 'static_pages#admin'
 
   root to: 'static_pages#home'
-  match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
 
   # The priority is based upon order of creation:

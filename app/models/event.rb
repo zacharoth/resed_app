@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :location, :name, :age_restrict, :label, :website, :date
+  attr_accessible :location, :name, :age_restrict, :label, :website, :date,
 		:time, :address, :description, :cost
 
   enum_attr :age_restrict, %w(none 18+ 21+)
