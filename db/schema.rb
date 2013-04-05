@@ -11,18 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404053333) do
+ActiveRecord::Schema.define(:version => 20130404052348) do
 
-  create_table "admins", :force => true do |t|
+  create_table "events", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "password_digest"
+    t.string   "location"
+    t.string   "age_restrict"
+    t.string   "label"
+    t.string   "website"
+    t.time     "time"
+    t.date     "date"
+    t.string   "address"
+    t.string   "description"
+    t.string   "cost"
+    t.boolean  "approved"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "admins", ["name"], :name => "index_admins_on_name", :unique => true
-
-# Could not dump table "events" because of following StandardError
-#   Unknown type 'enum' for column 'age_restrict'
+  add_index "events", ["age_restrict"], :name => "index_events_on_age_restrict"
+  add_index "events", ["cost"], :name => "index_events_on_cost"
+  add_index "events", ["date"], :name => "index_events_on_date"
+  add_index "events", ["label"], :name => "index_events_on_label"
+  add_index "events", ["location"], :name => "index_events_on_location"
+  add_index "events", ["name"], :name => "index_events_on_name", :unique => true
 
 end

@@ -1,13 +1,12 @@
 ResedApp::Application.routes.draw do
   resources :events
 
-  match '/submitnewevent', to: 'event#new'
+  match '/submitnewevent', to: 'events#new'
   match '/admin', to: 'static_pages#admin'
   match '/signout', to: 'static_pages#signout'
   match '/signin', to: 'static_pages#signin'
-
-  root to: 'static_pages#home'
   match '/about', to: 'static_pages#about'
+  root to: 'static_pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

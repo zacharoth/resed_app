@@ -1,0 +1,52 @@
+<% provide(:title, 'Submit New Event') %>
+<% btn_text = String.new %>
+<% header_text = String.new %>
+<% if signed_in? %>
+  <% btn_text = "Create event" %>
+  <% header_text = "New Event Submission" %>
+<% else %>
+  <% btn_text = "Submit event suggestion" %>
+  <% header_text = "New Event Suggestion" %>
+<% end %>
+<h1><%=header_text%></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+	<%= form_for(@event) do |f| %>
+
+	  <%= render 'shared/error_messages' %>
+
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+
+	  <%= f.label :location %>
+	  <%= f.text_field :location %>
+
+	  <%= f.label :address %>
+	  <%= f.text_field :address %>
+
+	  <%= f.label :date %>
+	  <%= f.date_select :date %>
+
+	  <%= f.label :time %>
+	  <%= f.time_select :time, ampm: true %>
+
+	  <%= f.label :website %>
+	  <%= f.text_field :website %>
+
+	  <%= f.label :cost %>
+	  <%= f.enum_select :cost %>
+
+	  <%= f.label :age_restrict, "Age restriction" %>
+	  <%= f.enum_select :age_restrict %>
+
+	  <%= f.label :label, "Category" %>
+	  <%= f.enum_select :label %>
+
+	  <%= f.label :description %>
+	  <%= f.text_area :description, :rows=>5 %>		
+
+	  <%= f.submit "#{btn_text}", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+</div>
