@@ -8,6 +8,10 @@ class CreateEvents < ActiveRecord::Migration
 	  t.string :website
 	  t.time :time
 	  t.date :date
+	  t.boolean :date_applicable
+	  t.boolean :all_day
+	  t.enum :repeat
+	  t.enum :day
 	  t.string :address
 	  t.string :description
 	  t.enum :cost

@@ -21,12 +21,16 @@ ActiveRecord::Schema.define(:version => 20130404052348) do
     t.string   "website"
     t.time     "time"
     t.date     "date"
+    t.boolean  "date_applicable"
+    t.boolean  "all_day"
+    t.string   "repeat"
+    t.string   "day"
     t.string   "address"
     t.string   "description"
     t.string   "cost"
     t.boolean  "approved"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "events", ["age_restrict"], :name => "index_events_on_age_restrict"

@@ -8,6 +8,12 @@ class EventsController < ApplicationController
   end
 
   def create
+	if (params[:event][:date_applicable])
+	  params[:event][:date] = nil
+	end
+	if (params[:event][:all_day])
+	  params[:event][:time] = nil
+	end
 	@event = Event.new(params[:event])
 	@event.approved = signed_in?
 	if @event.save
