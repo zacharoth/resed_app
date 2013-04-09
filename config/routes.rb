@@ -1,6 +1,11 @@
 ResedApp::Application.routes.draw do
-  resources :events
+  resources :events do
+	member do
+	  put :approve
+	end
+  end
 
+  match '/approve', to: 'events#approve'
   match '/submitnewevent', to: 'events#new'
   match '/admin', to: 'static_pages#admin'
   match '/signout', to: 'static_pages#signout'

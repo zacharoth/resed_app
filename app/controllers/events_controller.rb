@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :signed_in_admin, only: [:approve, :destroy]
+
   def new
 	@event = Event.new
   end
@@ -38,6 +40,7 @@ class EventsController < ApplicationController
 	@event = Event.find(params[:id])
 	if @event.update_attributes(params[:event])
 	  @event.approved = signed_in?
+	  @event.save
 	  msg = String.new
 	  if signed_in?
 		msg = "Event details updated"
@@ -54,4 +57,24 @@ class EventsController < ApplicationController
   def index
 	@events = Event.paginate(page: params[:page])
   end
+
+  def approve
+	@event = Event.find(params[:format])
+	@event.approved = true
+	@event.save
+	flash[:success] = "Event approved."
+	redirect_to events_url
+  end
+
+  def destroy
+	Event.find(params[:id]).destroy
+	flash[:success] = "Event deleted."
+	redirect_to events_url
+  end
+
+  private
+
+	def signed_in_admin
+	  redirect_to root, notice: "Admin access only." unless signed_in?
+	end
 end

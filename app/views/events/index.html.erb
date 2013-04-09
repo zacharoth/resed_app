@@ -5,7 +5,7 @@
 
 <ul class="events">
   <% @events.each do |event| %>
-	<%= render event %>
+	<%= render event, event: event %>
   <% end %>
 </ul>
 
