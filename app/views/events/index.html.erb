@@ -1,0 +1,12 @@
+<% provide(:title, 'All events') %>
+<h1> All Events </h1>
+
+<%= will_paginate %>
+
+<ul class="events">
+  <% @events.each do |event| %>
+	<%= render event %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

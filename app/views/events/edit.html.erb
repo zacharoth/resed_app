@@ -1,0 +1,18 @@
+<% provide(:title, "Edit event") %>
+<% btn_text = String.new %>
+<% if signed_in? %>
+  <% btn_text = "Save changes" %>
+<% else %>
+  <% btn_text = "Suggest changes" %>
+<% end %>
+<h1>Update Event Details</h1>
+<div class="row">
+  <div class="span6 offset3">
+	<%= form_for(@event) do |f| %>
+	  <%= render 'event_form', f: f %>
+	  <%= f.submit "#{btn_text}", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+</div>
+
+

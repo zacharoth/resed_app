@@ -1,0 +1,6 @@
+<li>
+	  <% if (signed_in? || event.approved) %>
+		<%= link_to event.name, event %>
+	  <% end %>
+</li>
+
