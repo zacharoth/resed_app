@@ -6,7 +6,8 @@ class Event < ActiveRecord::Base
   enum_attr :age_restrict, %w(none 18+ 21+)
   enum_attr :label, 
 	%w(music sports food/beverage fine_arts outdoors shopping movies festival)
-  enum_attr :cost, %w(free <$15 <$30 <$50 >$50)
+  enum_attr :cost, %w(free less_than_$15 less_than_$30 less_than_$50 
+					more_than_$50)
   enum_attr :repeat, %w(none daily weekly monthly bimonthly)
   enum_attr :day, %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
 				

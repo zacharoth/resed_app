@@ -10,15 +10,29 @@
 					event.time.sec) %>
 			  in <%= distance_of_time_in_words_to_now(full_date) %>
 			<% else %>
-			  <%=event.day%>s
+			  <%="#{event.day}s"%>
 			  <% if !event.all_day %>
-				at <%= event.time.to_formatted_s("%I:%M%p") %>
+				at <%= display_time(event) %>
 			  <% end %>
 			<% end %>
 		  <% end %>
 		</td>
 		<td><%=event.label%></td>
-		<td><%=event.cost%></td>
+		<td>
+		  <% if event.cost[0] == 'f' %>
+			free
+		  <% elsif event.cost[0] == 'l' %>
+			<% if event.cost[5] == '1' %>
+			  under $15
+			<% elsif event.cost[5] == '3' %>
+			  under $30
+			<% else %>
+			  under $50
+			<% end %>
+		  <% else %>
+			over $50
+		  <% end %> 
+		</td>
 		<% if signed_in? %>
 		  <% if !event.approved %>
 			<td><%= link_to "approve", approve_path(event),

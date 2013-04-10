@@ -1,13 +1,73 @@
 <% provide(:title, @event.name) %>
+<% gmap_address = @event.address.gsub(' ', '+') %>
+<h1><%= @event.name %> </h1>
+<h2>at <%= @event.location %>
+  <% if !@event.date_applicable %>
+	on <%= display_date(@event) %>
+	<% if !@event.all_day %>
+	  <br><%= display_time(@event) %>
+	<% end %>
+  <% else %>
+	on <%="#{@event.day}s"%>
+	<% if @event.repeat %>
+	  <%="(#{@event.repeat})"%>
+	<% end %>
+	<% if !@event.all_day %>
+	  <br>at<%= display_time(@event) %>
+    <% end %>
+  <% end %>
+</h2>
+
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
-      <h1>
-        <%= @event.name %>
+      <h1 style="margin-bottom: 10px">
+        <a 
+		href=<%="http://maps.google.com/?q=#{gmap_address}"%>> 
+		  <%= @event.address %>
+		</a>
+	  </h1>
+	  <h1>
+		<% sensor = "sensor=false" %>
+		<% size = "size=200x300" %>
+		<% vanderbilt = "vanderbilt+university" %>
+		<% path = "path=#{vanderbilt}|#{gmap_address}" %>
+		<% params = "#{size}&#{path}&#{sensor}" %>
+		<% url = "https://maps.googleapis.com/maps/api/staticmap?#{params}"%>
+		<% alt = "Map of #{@event.name}" %>
+		<%= image_tag(url, alt: alt) %>
       </h1>
 	  <h2>
-		<%= @event.location %>
+		<% full_website = String.new %>
+		<% if !@event.website.include?("http://") %>
+		  <% full_website = "http://#{@event.website}" %>
+		<% else %>
+		  <% full_website = @event.website %>
+		<% end %>
+		<a href=<%= full_website %>><%= @event.website %></a>
 	  </h2>
     </section>
   </aside>
+  <aside class="span3 pull-right">
+	<h3 style="text-align: right;">
+	  Categories:
+	</h3>
+	<p style="text-align: right;">
+	  <% if @event.label %>
+		Type: <%= @event.label %> <br>
+	  <% end %>
+	  <% if @event.cost %>
+		Cost: <%= @event.cost %> <br>
+	  <% end %>
+	  <% if @event.age_restrict %>
+		Age restriction: <%= @event.age_restrict %>
+	  <% end %>
+	</p>
+  </aside>
+  <div class="center">
+	<h3>
+	<%= @event.description %>
+	</h3>
+  </div>
 </div>
+
