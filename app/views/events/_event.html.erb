@@ -1,16 +1,36 @@
-<li>
+<tr>
 	  <% if (signed_in? || event.approved) %>
-		<%= link_to event.name, event %>
-		<% if signed_in? %>
-		  <%= link_to "delete", event, method: :delete,
-				:data => { confirm: "You sure?" },
-				class: "pull-right btn btn-danger btn-mini" %>
-		  <% if !event.approved %>
-			<%= link_to "approve", approve_path(event),
-					:data => { confirm: "You sure?" }, 
-					class: "pull-right btn btn-success btn-mini" %>
+		<td><%= link_to event.name, event %></td>
+		<td><%=event.location%></td>
+		<td>
+		  <% if !event.date_applicable %>
+			<% if !event.all_day %>
+			  <% full_date = DateTime.new(event.date.year, event.date.month,
+					event.date.day, event.time.hour, event.time.min, 
+					event.time.sec) %>
+			  in <%= distance_of_time_in_words_to_now(full_date) %>
+			<% else %>
+			  <%=event.day%>s
+			  <% if !event.all_day %>
+				at <%= event.time.to_formatted_s("%I:%M%p") %>
+			  <% end %>
+			<% end %>
 		  <% end %>
+		</td>
+		<td><%=event.label%></td>
+		<td><%=event.cost%></td>
+		<% if signed_in? %>
+		  <% if !event.approved %>
+			<td><%= link_to "approve", approve_path(event),
+					:data => { confirm: "You sure?" }, 
+					class: "btn btn-success btn-mini" %></td>
+		  <% else %>
+			<td></td>
+		  <% end %>
+		  <td><%= link_to "delete", event, method: :delete,
+				:data => { confirm: "You sure?" },
+				class: "btn btn-danger btn-mini" %></td>
 		<% end %>
 	  <% end %>
-</li>
+</tr>
 

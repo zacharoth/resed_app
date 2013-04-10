@@ -3,13 +3,16 @@
 
 <%= will_paginate %>
 
-<ul class="events">
+<table class="container">
+  <%= render 'events/table_header_row' %>
   <% @events.each do |event| %>
 	<%= render event, event: event %>
   <% end %>
-  <% if @events.count == 0 %>
+</table>
+<p>
+<% if @events.count == 0 %>
 	No events matched your search term
-  <% end %>
-</ul>
+<% end %>
+</p>
 
 <%= will_paginate %>

@@ -15,12 +15,12 @@ class Event < ActiveRecord::Base
   validates :location, presence: true, length: { maximum: 50 }
   validates :description, presence: true
   
-  def self.search(search, page)
+  def self.search(search, page, sort, direction)
 	paginate :per_page => 25, :page => page,
 			 :conditions => ['name LIKE :search OR location LIKE :search OR 
 					label LIKE :search OR description LIKE :search OR 
 					address LIKE :search OR website LIKE :search',
 					{:search =>"%#{search}%"}],
-			 :order => 'name'	
+			 :order => ("#{sort} #{direction}" || 'date desc')	
   end
 end

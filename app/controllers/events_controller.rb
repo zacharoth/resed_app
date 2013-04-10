@@ -55,7 +55,9 @@ class EventsController < ApplicationController
   end
 
   def index
-	@events = Event.paginate(page: params[:page])
+	@events = Event.paginate :per_page => 25, 
+			:page => params[:page],
+			:order => ("#{params[:sort]} #{params[:direction]}" || 'date desc')	
   end
 
   def approve
@@ -73,7 +75,8 @@ class EventsController < ApplicationController
   end
 
   def search
-	@events = Event.search(params[:search], params[:page])
+	@events = Event.search(params[:search], params[:page], 
+						   params[:sort], params[:direction])
   end
 
   private
