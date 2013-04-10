@@ -2,12 +2,14 @@
 	  <% if (signed_in? || event.approved) %>
 		<%= link_to event.name, event %>
 		<% if signed_in? %>
+		  <%= link_to "delete", event, method: :delete,
+				:data => { confirm: "You sure?" },
+				class: "pull-right btn btn-danger btn-mini" %>
 		  <% if !event.approved %>
-			| <%= link_to "approve", approve_path(event),
-					data: { confirm: "You sure?" } %>
+			<%= link_to "approve", approve_path(event),
+					:data => { confirm: "You sure?" }, 
+					class: "pull-right btn btn-success btn-mini" %>
 		  <% end %>
-		  | <%= link_to "delete", event, method: :delete,
-				data: { confirm: "You sure?" } %>
 		<% end %>
 	  <% end %>
 </li>

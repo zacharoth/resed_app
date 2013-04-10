@@ -3,6 +3,9 @@ ResedApp::Application.routes.draw do
 	member do
 	  put :approve
 	end
+	collection do
+	  get :search
+	end
   end
 
   match '/approve', to: 'events#approve'

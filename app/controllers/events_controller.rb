@@ -72,6 +72,10 @@ class EventsController < ApplicationController
 	redirect_to events_url
   end
 
+  def search
+	@events = Event.search(params[:search], params[:page])
+  end
+
   private
 
 	def signed_in_admin
