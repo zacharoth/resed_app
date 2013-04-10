@@ -17,7 +17,10 @@ class Event < ActiveRecord::Base
   
   def self.search(search, page)
 	paginate :per_page => 25, :page => page,
-			 :conditions => ['name like ?', "%#{search}%"],
+			 :conditions => ['name LIKE :search OR location LIKE :search OR 
+					label LIKE :search OR description LIKE :search OR 
+					address LIKE :search OR website LIKE :search',
+					{:search =>"%#{search}%"}],
 			 :order => 'name'	
   end
 end

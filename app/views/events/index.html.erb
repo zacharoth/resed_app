@@ -7,6 +7,9 @@
   <% @events.each do |event| %>
 	<%= render event, event: event %>
   <% end %>
+  <% if @events.count == 0 %>
+	No events in the database right now.
+  <% end %>
 </ul>
 
 <%= will_paginate %>
