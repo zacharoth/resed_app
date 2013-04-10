@@ -2,6 +2,7 @@
 <h1> All Events </h1>
 
 <%= will_paginate %>
+<% if @events.count != 0 %>
 <table class = "container">
   <%= render 'events/table_header_row' %> 
   <% @events.each do |event| %>
@@ -9,7 +10,7 @@
   <% end %>
 </table>
 <p>
-  <% if @events.count == 0 %>
+  <% else %>
 	No events in the database right now.
   <% end %>
 </p>
