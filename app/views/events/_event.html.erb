@@ -9,11 +9,11 @@
 					event.date.day, event.time.hour, event.time.min, 
 					event.time.sec) %>
 			  in <%= distance_of_time_in_words_to_now(full_date) %>
-			<% else %>
-			  <%="#{event.day}s"%>
-			  <% if !event.all_day %>
-				at <%= display_time(event) %>
-			  <% end %>
+			<% end %>
+		  <% else %>
+			<%="#{event.day}s"%>
+			<% if !event.all_day %>
+			  at <%= display_time(event) %>
 			<% end %>
 		  <% end %>
 		</td>
