@@ -15,7 +15,7 @@
 	  <%="(#{@event.repeat})"%>
 	<% end %>
 	<% if !@event.all_day %>
-	  <br>at<%= display_time(@event) %>
+	  <br>at <%= display_time(@event) %>
     <% end %>
   <% end %>
 </h2>
@@ -42,7 +42,7 @@
     </section>
   </aside>
   <aside class="span3 pull-right">
-	<h2>
+	<h2 style="word-wrap: break-word;">
       <% full_website = String.new %>
 	  <% if !@event.website.include?("http://") %>
    		<% full_website = "http://#{@event.website}" %>

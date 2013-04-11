@@ -1,15 +1,21 @@
 module EventsHelper
 
   def display_time(event)
-	if (event.time.hour == 0)
-	  "12:#{event.time.min} am"
-	elsif (event.time.hour < 12)
-	  "#{event.time.hour}:#{event.time.min} am"
-	elsif (event.time.hour == 12)
-	  "#{event.time.hour}:#{event.time.min} pm"
+	min = String.new
+	if event.time.min == 0
+	  min = "00"
 	else
-	  adj_hour = 24 - event.time.hour
-	  "#{adj_hour}:#{event.time.min} pm"
+	  min = event.time.min
+	end
+	if (event.time.hour == 0)
+	  "12:#{min} am"
+	elsif (event.time.hour < 12)
+	  "#{event.time.hour}:#{min} am"
+	elsif (event.time.hour == 12)
+	  "#{event.time.hour}:#{min} pm"
+	else
+	  adj_hour = event.time.hour - 12
+	  "#{adj_hour}:#{min} pm"
 	end
   end
 

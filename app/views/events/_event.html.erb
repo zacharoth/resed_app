@@ -17,7 +17,7 @@
 			<% end %>
 		  <% end %>
 		</td>
-		<td><%=event.label%></td>
+		<td><%= event.label%></td>
 		<td><%= display_cost(event) %> </td>
 		<% if signed_in? %>
 		  <% if !event.approved %>
