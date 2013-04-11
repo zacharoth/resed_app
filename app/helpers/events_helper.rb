@@ -19,4 +19,22 @@ module EventsHelper
 	month = months[event.time.month - 1]
     "#{month} #{event.date.day}, #{event.date.year}"
   end
+
+  def display_cost(event)
+	if !event.cost
+	  ""
+	elsif event.cost[0] == 'f'
+	  "free"
+	elsif event.cost[0] == 'l'
+	  if event.cost[5] == '1'
+		"under $15"
+	  elsif event.cost[5] == '3'
+		"under $30"
+	  else
+		"under $50"
+	  end
+	else
+	  "over $50"
+	end
+  end
 end

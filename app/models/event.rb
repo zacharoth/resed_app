@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :location, :name, :age_restrict, :label, :website, :date,
 		:time, :address, :description, :cost, :date_applicable, :all_day,
-		:repeat, :day
+		:repeat, :day, :issue
 
   enum_attr :age_restrict, %w(none 18+ 21+)
   enum_attr :label, 
@@ -24,4 +24,7 @@ class Event < ActiveRecord::Base
 					{:search =>"%#{search}%"}],
 			 :order => ("#{sort} #{direction}" || 'date desc')	
   end
+
+  @issue_event = nil
+
 end

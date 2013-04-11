@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404052348) do
+ActiveRecord::Schema.define(:version => 20130411011222) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130404052348) do
     t.boolean  "approved"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "issue"
   end
 
   add_index "events", ["age_restrict"], :name => "index_events_on_age_restrict"

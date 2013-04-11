@@ -63,9 +63,30 @@ class EventsController < ApplicationController
   def approve
 	@event = Event.find(params[:format])
 	@event.approved = true
+	@event.issue = ""
 	@event.save
 	flash[:success] = "Event approved."
 	redirect_to events_url
+  end
+
+  def reportissue
+	@event = Event.find(params[:format])
+	Event.class_variable_set(:@@issue_event, params[:format])
+  end
+
+  def updateissue
+	if Event.class_variable_get(:@@issue_event)
+	  @event = Event.find(Event.class_variable_get(:@@issue_event))
+	  Event.class_variable_set(:@@issue_event, nil)
+	  @event.issue = params[:event][:issue]
+	  @event.approved = false
+	  @event.save
+	  flash[:success] = "Issue successfully submitted."
+	  redirect_to @event
+	else
+	  flash[:error] = "Issue unable to be submitted."
+	  redirect_to events_url
+	end
   end
 
   def destroy

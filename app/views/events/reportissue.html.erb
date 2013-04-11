@@ -1,0 +1,17 @@
+<% provide(:title, "Report incorrect info") %>
+<h1> Report Incorrect Event Info </h1>
+<h2> Event: <%= @event.name %> </h2>
+<div class="row">
+  <div class="span6 offset3">
+	<%= form_for @event, :url=>{:action => "updateissue"},
+			:html=>{:method => "put"} do |f| %>
+	  <%= f.label :issue,
+		"Please explain the issue with the event information:" %>
+	  <%= f.text_area :issue, :rows=>5 %>
+	  <%= f.hidden_field :id, value: "#{@event.id}" %>
+	  <%= f.submit "Report issue", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+</div>
+
+

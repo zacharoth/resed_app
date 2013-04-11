@@ -2,12 +2,16 @@ ResedApp::Application.routes.draw do
   resources :events do
 	member do
 	  put :approve
+	  put :report_issue
+	  put :updateissue
 	end
 	collection do
 	  get :search
 	end
   end
 
+  match '/updateissue', to: 'events#updateissue'
+  match '/reportissue', to: 'events#reportissue'
   match '/approve', to: 'events#approve'
   match '/submitnewevent', to: 'events#new'
   match '/admin', to: 'static_pages#admin'
