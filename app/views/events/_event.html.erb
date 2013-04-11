@@ -19,6 +19,7 @@
 		</td>
 		<td><%= event.label%></td>
 		<td><%= display_cost(event) %> </td>
+		<td><%= event.age_restrict%></td>
 		<% if signed_in? %>
 		  <% if !event.approved %>
 			<td><%= link_to "approve", approve_path(event),
