@@ -4,7 +4,7 @@ module DeleteOldEvents
 	@events = Event.all
 	@events.each { |event|
 	  if @event.date <= 2.days.ago
-		@event.destroy
+		@event.destroy unless (@event.date_applicable || @event.repeat)
 	  end
 	}
   end
