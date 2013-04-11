@@ -21,20 +21,18 @@ module EventsHelper
   end
 
   def display_cost(event)
-	if !event.cost
-	  ""
-	elsif event.cost[0] == 'f'
+	if event.cost == "free"
 	  "free"
-	elsif event.cost[0] == 'l'
-	  if event.cost[5] == '1'
-		"under $15"
-	  elsif event.cost[5] == '3'
-		"under $30"
-	  else
-		"under $50"
-	  end
-	else
+	elsif event.cost == "less_than_$15"
+	  "under $15"
+	elsif event.cost == "less_than_$30"
+	  "under $30"
+	elsif event.cost == "less_than_$50"
+	  "under $50"
+	elsif event.cost == "more_than_$50"
 	  "over $50"
+	else
+	  ""
 	end
   end
 end
