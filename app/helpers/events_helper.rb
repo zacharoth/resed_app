@@ -21,8 +21,8 @@ module EventsHelper
   end
 
   def display_cost(event)
-	if event.cost 
-	  event.cost.gsub('_',' ')
+	if event.cost
+	  event.cost.to_s.gsub('_', ' ')
 	else
 	  nil
 	end
