@@ -1,0 +1,5 @@
+do_delete_old_events:
+	every: 24hr
+	class: DeleteOldEvents
+	args:
+	description: Runs the perform method in DeleteOldEvents
