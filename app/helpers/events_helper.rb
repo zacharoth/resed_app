@@ -21,18 +21,10 @@ module EventsHelper
   end
 
   def display_cost(event)
-	if event.cost == "free"
-	  "free"
-	elsif event.cost == "less_than_$15"
-	  "under $15"
-	elsif event.cost == "less_than_$30"
-	  "under $30"
-	elsif event.cost == "less_than_$50"
-	  "under $50"
-	elsif event.cost == "more_than_$50"
-	  "over $50"
+	if event.cost 
+	  event.cost.gsub('_',' ')
 	else
-	  ""
+	  nil
 	end
   end
 end
