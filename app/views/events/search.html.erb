@@ -2,7 +2,7 @@
 <h1> Search Results </h1>
 
 <%= will_paginate %>
-<% if @event.count != 0 %>
+<% if @events.count != 0 %>
 <table class="container">
   <%= render 'events/table_header_row' %>
   <% @events.each do |event| %>
