@@ -1,5 +1,8 @@
 <% provide(:title, @event.name) %>
 <% gmap_address = @event.address.gsub(' ', '+') %>
+<% if !(gmap_address.include? "Nashville") %>
+  <% gmap_address = "#{gmap_address}+Nashville+TN" %>
+<% end %>
 <h1>
   <%= @event.name %> 
 </h1>
@@ -66,9 +69,19 @@
 	  <% end %>
 	</p>
   </aside>
-  <div class="center">
-	<h3>
+  <div class="center span6">
+	<h3 style="word-wrap: break-word;">
 	<%= @event.description %>
+	</h3>
+	<h3 class="pull-left">
+	  <a href="http://www.taxifarefinder.com/main.php?city=Nashville-TN">
+		Find taxi costs
+	  </a>
+	</h3>
+	<h3 class="pull-right">
+	 <a href="http://www.weather.com/weather/today/Nashville+TN+USTN0357:1:US">
+		Check the weather
+	  </a>
 	</h3>
   </div>
 </div>
